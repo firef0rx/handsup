@@ -11,8 +11,3 @@ Put this line in server.cfg
 ## Author
 
 - [@FireF0RX](https://www.github.com/f1ref0rx)
-
-
-## Support
-
-For support, DM: FireF0RX#6598.
