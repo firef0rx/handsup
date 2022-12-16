@@ -1,4 +1,7 @@
+-- Author: F1reF0RX
+
 local status = false
+local surrenderStatus = false
 
 local function toggleHandsUp(bool)
    local dict = "missminuteman_1ig_2"
@@ -21,8 +24,37 @@ local function toggleHandsUp(bool)
    end
 end
 
+local function surrender(bool)
+   local ped = PlayerPedId()
+
+   local dict = "random@arrests"
+
+   RequestAnimDict(dict)
+   while not HasAnimDictLoaded(dict) do
+     Citizen.Wait(100)
+   end
+
+   if not IsEntityDead(ped) then
+      if bool then
+         exports['mythic_notify']:DoHudText('inform', 'You knelt down, to get up press F9', { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
+         TaskPlayAnim( ped, "random@arrests", "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+         surrenderStatus = true
+      else
+         ClearPedTasks(ped)
+         surrenderStatus = false
+      end
+   end
+end
+
+RegisterCommand("+surrender", function()
+   surrender(not surrenderStatus)
+end)
+
 RegisterCommand("+handsup", function()
    toggleHandsUp(not status)
 end)
 
-RegisterKeyMapping('+handsup', "Hands-Up", "KEYBOARD", "X")
+RegisterKeyMapping('+surrender', "Toggle Surrender", "KEYBOARD", "F9")
+RegisterKeyMapping('+handsup', "Toggle Hands Up", "KEYBOARD", "X")
+
+print("[ Hands-Up Script Loaded ] -- ^1By: FireF0RX#6598 \n Discord: https://dsc.gg/gliese")
