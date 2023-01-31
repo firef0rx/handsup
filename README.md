@@ -17,7 +17,7 @@ Dependency: [mythic_notify](https://github.com/JayMontana36/mythic_notify)
 Put this line in server.cfg
 ## Author
 
-- [@FireF0RX](https://www.github.com/f1ref0rx)
+- [@FireF0RX](https://www.github.com/firef0rx)
 
 
 ## Support
