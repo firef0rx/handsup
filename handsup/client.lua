@@ -50,4 +50,5 @@ RegisterCommand("+handsup", function()
     toggleHandsUp(not status)
 end)
 
-RegisterKeyMapping('+
+RegisterKeyMapping('+surrender', "Toggle Surrender", "KEYBOARD", "F9")
+RegisterKeyMapping('+handsup', "Toggle Hands Up", "KEYBOARD", "X")
