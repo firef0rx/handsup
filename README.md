@@ -22,4 +22,4 @@ Put this line in server.cfg
 
 ## Support
 
-For support, DM: FireF0RX#6598.
+For support, DM: FireF0RX#6598 or (Discord)[https://dsc.gg/fvmarket].
