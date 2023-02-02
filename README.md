@@ -8,10 +8,10 @@ Preview/Forum: [[ Standalone - Optimised ] Hands-Up and Surrender](https://forum
 ## Installation
 Put extracted file in your resource file
 
-Dependency: [mythic_notify](https://github.com/JayMontana36/mythic_notify) 
+## Compatibility with [mythic_notify](https://github.com/JayMontana36/mythic_notify) and [okokNotify](https://forum.cfx.re/t/okoknotify-standalone-paid/3907758)
 
 ```bash
-  ensure handsup
+  ensure gls-handssur
 ```
 👆
 Put this line in server.cfg
