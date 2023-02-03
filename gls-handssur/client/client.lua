@@ -1,6 +1,10 @@
 -- CONFIG
 
 local cfg = {
+   enable_notify = true,
+
+   lang = 'en', -- en or ro
+
    notify = {
       customNotify = false, -- true or false
       exportName = 'okokNotify', -- mythic_notify or okokNotify
@@ -19,7 +23,12 @@ local cfg = {
 -- LANG
 
 local lang = {
-   message = 'You knelt down, to get up press %s' -- don't touch %s
+   en = {
+      message = 'You knelt down, to get up press %s' -- don't touch %s
+   },
+   ro = {
+      message = 'Te-ai pus in genunchi, apasa %s pentru a te ridica.' -- don't touch %s
+   }
 }
 
 -- SCRIPT
@@ -69,16 +78,40 @@ function surrender(bool)
          RequestAndWaitForAnimDict(dict)
          TaskPlayAnim( ped, dict, "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
          surrenderStatus = true
-         if cfg.notify.customNotify then
-            if cfg.notify.exportName == 'mithyc_notify' then
-               exports[cfg.notify.resourceName]:DoLongHudText('inform', lang.message:format(cfg.deffault_binds.surrender), { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
-            elseif cfg.notify.exportName == 'okokNotify' then
-               exports[cfg.notify.resourceName]:Alert('Info', lang.message:format(cfg.deffault_binds.surrender), cfg.okokNotify.time, 'info')
+         if cfg.enable_notify then
+            if cfg.lang == 'en' then
+               if cfg.notify.customNotify then
+                  if cfg.notify.exportName == 'mithyc_notify' then
+                     exports[cfg.notify.resourceName]:DoLongHudText('inform', lang.en.message:format(cfg.deffault_binds.surrender), { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
+                  elseif cfg.notify.exportName == 'okokNotify' then
+                     exports[cfg.notify.resourceName]:Alert('Info', lang.en.message:format(cfg.deffault_binds.surrender), cfg.okokNotify.time, 'info')
+                  end
+               else
+                  AddTextEntry("NOTIFY", lang.en.message:format(cfg.deffault_binds.surrender))
+                  SetNotificationTextEntry("NOTIFY")
+                  DrawNotification(true, false)
+               end
+
+            elseif cfg.lang == 'ro' then
+               if cfg.notify.customNotify then
+                  if cfg.notify.exportName == 'mithyc_notify' then
+                     exports[cfg.notify.resourceName]:DoLongHudText('inform', lang.ro.message:format(cfg.deffault_binds.surrender), { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
+                  elseif cfg.notify.exportName == 'okokNotify' then
+                     exports[cfg.notify.resourceName]:Alert('Info', lang.ro.message:format(cfg.deffault_binds.surrender), cfg.okokNotify.time, 'info')
+                  end
+               else
+                  AddTextEntry("NOTIFY", lang.ro.message:format(cfg.deffault_binds.surrender))
+                  SetNotificationTextEntry("NOTIFY")
+                  DrawNotification(true, false)
+               end
+            else
+               Citizen.CreateThread(function()
+                  while true do
+                     Citizen.Wait(60000*3)
+                     print('^6HandsSur^7 ^6ERROR^7: cfg.lang is empty')
+                  end
+               end)
             end
-         else
-            AddTextEntry("NOTIFY", lang.message:format(cfg.deffault_binds.surrender))
-            SetNotificationTextEntry("NOTIFY")
-            DrawNotification(true, false)
          end
       else
          ClearPedTasks(ped)
