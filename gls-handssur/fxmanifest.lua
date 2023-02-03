@@ -4,7 +4,8 @@ lua54 'yes'
 
 author 'FireF0RX#6598'
 name 'Gliese HandsUp & Surrender'
-description 'HandsUp & Surrender Script, Discord: https://dsc.gg/fvmarket'
+version '3.0'
+url 'https://github.com/firef0rx/handsup'
 
 client_scripts {
    'client/client.lua'
