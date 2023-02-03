@@ -6,9 +6,9 @@ local cfg = {
    lang = 'en', -- en or ro
 
    notify = {
-      customNotify = false, -- true or false
-      exportName = 'okokNotify', -- mythic_notify or okokNotify
-      resourceName = 'okokNotify', -- notify resource name
+      customNotify = true, -- true or false
+      exportName = 'mythic_notify', -- mythic_notify or okokNotify
+      resourceName = 'gls-notify', -- notify resource name
    },
 
    deffault_binds = {
@@ -81,7 +81,7 @@ function surrender(bool)
          if cfg.enable_notify then
             if cfg.lang == 'en' then
                if cfg.notify.customNotify then
-                  if cfg.notify.exportName == 'mithyc_notify' then
+                  if cfg.notify.exportName == 'mythic_notify' then
                      exports[cfg.notify.resourceName]:DoLongHudText('inform', lang.en.message:format(cfg.deffault_binds.surrender), { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
                   elseif cfg.notify.exportName == 'okokNotify' then
                      exports[cfg.notify.resourceName]:Alert('Info', lang.en.message:format(cfg.deffault_binds.surrender), cfg.okokNotify.time, 'info')
@@ -94,7 +94,7 @@ function surrender(bool)
 
             elseif cfg.lang == 'ro' then
                if cfg.notify.customNotify then
-                  if cfg.notify.exportName == 'mithyc_notify' then
+                  if cfg.notify.exportName == 'mythic_notify' then
                      exports[cfg.notify.resourceName]:DoLongHudText('inform', lang.ro.message:format(cfg.deffault_binds.surrender), { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
                   elseif cfg.notify.exportName == 'okokNotify' then
                      exports[cfg.notify.resourceName]:Alert('Info', lang.ro.message:format(cfg.deffault_binds.surrender), cfg.okokNotify.time, 'info')
