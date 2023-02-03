@@ -9,7 +9,7 @@ Preview/Forum: [[ Standalone - Optimised ] Hands-Up and Surrender](https://forum
 Put extracted file in your resource file
 
 ```bash
-  ensure gls-handssur
+ensure gls-handssur
 ```
 👆
 Put this line in server.cfg
