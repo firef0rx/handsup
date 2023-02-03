@@ -2,7 +2,7 @@
 
 local cfg = {
    notify = {
-      customNotify = true, -- true or false
+      customNotify = false, -- true or false
       exportName = 'okokNotify', -- mythic_notify or okokNotify
       resourceName = 'okokNotify', -- notify resource name
    },
@@ -35,10 +35,11 @@ local function RequestAndWaitForAnimDict(dict)
 end
 
 local function check(ped)
-   if not IsEntityDead(ped) and not IsPedDeadOrDying(ped) and not IsPlayerFreeAiming(ped) and not IsPedAimingFromCover(ped) and not IsPedSwimming(ped) and not IsPedShooting(ped) and not IsPedClimbing(ped) and not IsPedCuffed(ped) and not IsPedDiving(ped) and not IsPedFalling(ped) and not IsPedJumping(ped) and not IsPedJumpingOutOfVehicle(ped) and IsPedOnFoot(ped) and not IsPedRunning(ped) and not IsPedUsingAnyScenario(ped) and not IsPedInParachuteFreeFall(ped) and not IsPedSprinting(ped) then
+   if not IsEntityDead(ped) and not IsPedDeadOrDying(ped) and not IsPlayerFreeAiming(ped) and not IsPedAimingFromCover(ped) and not IsPedSwimming(ped) and not IsPedShooting(ped) and not IsPedClimbing(ped) and not IsPedCuffed(ped) and not IsPedDiving(ped) and not IsPedFalling(ped) and not IsPedJumping(ped) and not IsPedJumpingOutOfVehicle(ped) and IsPedOnFoot(ped) and not IsPedRunning(ped) and not IsPedInParachuteFreeFall(ped) and not IsPedSprinting(ped) then
       return true
+   else
+      return false
    end
-   return false
 end
 
 function hands(bool)
@@ -63,14 +64,15 @@ function surrender(bool)
 
    local dict = 'random@arrests'
 
-   if check(ped) then
+   if check(ped) == true then
       if bool then
-         TaskPlayAnim( ped, "random@arrests", "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+         RequestAndWaitForAnimDict(dict)
+         TaskPlayAnim( ped, dict, "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
          surrenderStatus = true
          if cfg.notify.customNotify then
-            if cfg.notify.exportName == 'mithyc_notify' and GetResourceState(cfg.notify.resourceName) == 'started' then
+            if cfg.notify.exportName == 'mithyc_notify' then
                exports[cfg.notify.resourceName]:DoLongHudText('inform', lang.message:format(cfg.deffault_binds.surrender), { ['background-color'] = '#470ad2', ['color'] = '#ffffff' })
-            elseif cfg.notify.exportName == 'okokNotify' and GetResourceState(cfg.notify.resourceName) == 'started' then
+            elseif cfg.notify.exportName == 'okokNotify' then
                exports[cfg.notify.resourceName]:Alert('Info', lang.message:format(cfg.deffault_binds.surrender), cfg.okokNotify.time, 'info')
             end
          else
