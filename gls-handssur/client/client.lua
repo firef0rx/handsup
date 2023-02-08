@@ -128,7 +128,7 @@ RegisterCommand('+handsup', function()
    hands(not handsStatus)
 end)
 
-RegisterKeyMapping('/+hands', 'Toggle Hands Up', 'KEYBOARD', cfg.deffault_binds.hands)
-RegisterKeyMapping('/+surrender', 'Toggle Surrender', 'KEYBOARD', cfg.deffault_binds.surrender)
+RegisterKeyMapping('+handsup', 'Toggle Hands Up', 'KEYBOARD', cfg.deffault_binds.hands)
+RegisterKeyMapping('+surrender', 'Toggle Surrender', 'KEYBOARD', cfg.deffault_binds.surrender)
 
 print("[ Hands-Up Script Loaded ] -- ^1By: FireF0RX#6598 \n Discord: https://dsc.gg/fvmarket")
